@@ -1,42 +1,34 @@
-/**
- * Layout component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.com/docs/use-static-query/
- */
-
 import React from "react"
-import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
-import { Layout, Menu } from "antd"
-
-const { Header, Content, Footer } = Layout
+import styled from "styled-components"
+import GlobalStyle from "../components/GlobalStyle"
 
 const BaseLayout = ({ children }) => {
+  const data = useStaticQuery(graphql`
+    query MyQuery {
+      site {
+        siteMetadata {
+          title
+        }
+      }
+    }
+  `)
   return (
     <>
-      <Layout className="layout">
-        <Header style={{ position: "fixed", zIndex: 1, width: "100%" }}>
-          {/* <div className="logo">{data.site.siteMetadata?.title}</div> */}
-          <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["2"]}>
-            <Menu.Item key="1">nav 1</Menu.Item>
-            <Menu.Item key="2">nav 2</Menu.Item>
-            <Menu.Item key="3">nav 3</Menu.Item>
-          </Menu>
-        </Header>
-        <Content className="site-layout-content">
-          <main>{children}</main>
-        </Content>
-        <Footer style={{ textAlign: "center" }}>
-          Ant Design ©2018 Created by Ant UED
-        </Footer>
-      </Layout>
+      <GlobalStyle />
+      <NavBarContainer>
+        <div>{data.site.siteMetadata.title}</div>
+      </NavBarContainer>
+      {children}
     </>
   )
 }
 
-BaseLayout.propTypes = {
-  children: PropTypes.node.isRequired,
-}
-
 export default BaseLayout
+
+const NavBarContainer = styled.nav`
+  height: 80px;
+  justify-content: center;
+  background: transparent;
+  z-index: 10000;
+`

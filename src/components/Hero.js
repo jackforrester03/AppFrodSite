@@ -1,6 +1,7 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
+import styled from "styled-components"
 
 /*
  * This component is built using `gatsby-image` to automatically serve optimized
@@ -13,7 +14,7 @@ import Img from "gatsby-image"
  * - `useStaticQuery`: https://www.gatsbyjs.com/docs/use-static-query/
  */
 
-const HeroImage = () => {
+const Hero = () => {
   const data = useStaticQuery(graphql`
     query {
       placeholderImage: file(relativePath: { eq: "img1.jpg" }) {
@@ -36,11 +37,38 @@ const HeroImage = () => {
   }
 
   return (
-    <div>
-      <Img fluid={data.placeholderImage.childImageSharp.fluid} />
-      <h1 className="hero-image-txt">{data.site.siteMetadata.title}</h1>
-    </div>
+    <HeroContainer>
+      <HeroText>{data.site.siteMetadata.title}</HeroText>
+      <HeroImg fluid={data.placeholderImage.childImageSharp.fluid} />
+    </HeroContainer>
   )
 }
 
-export default HeroImage
+export default Hero
+
+const HeroContainer = styled.div`
+  position: relative;
+  min-height: 100vh;
+  height: 100vh;
+  text-align: center;
+  top: -80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+const HeroImg = styled(Img)`
+  position: relative;
+  top: 0px;
+  height: 100%;
+  width: 100%;
+  background: cover;
+`
+const HeroText = styled.div`
+  position: absolute;
+  margin: auto;
+  width: 100%;
+  top: 50%;
+  z-index: 2;
+  color: #ffffff;
+  font-size: 2rem;
+`
