@@ -2,7 +2,7 @@ import React from "react"
 
 import BaseLayout from "../components/BaseLayout"
 import Hero from "../components/Hero"
-import SEO from "../components/Seo"
+import SEO from "../components/seo"
 
 const IndexPage = () => (
   <BaseLayout>
