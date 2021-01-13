@@ -3,13 +3,13 @@ import { Link } from "gatsby"
 import "../components/App.css"
 
 import BaseLayout from "../components/BaseLayout"
-import Image from "../components/image"
+import HeroImage from "../components/HeroImage"
 import SEO from "../components/seo"
 
 const IndexPage = () => (
   <BaseLayout>
     <SEO title="Home" />
-    <Image />
+    <HeroImage />
     <h1>Hi people</h1>
     <p>Welcome to your new Gatsby site.</p>
     <p>Now go build something great.</p>
