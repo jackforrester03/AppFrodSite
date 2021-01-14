@@ -2,6 +2,7 @@ import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
 import styled from "styled-components"
+import { Link } from "gatsby"
 
 /*
  * This component is built using `gatsby-image` to automatically serve optimized
@@ -17,9 +18,9 @@ import styled from "styled-components"
 const Hero = () => {
   const data = useStaticQuery(graphql`
     query {
-      placeholderImage: file(relativePath: { eq: "img1.jpg" }) {
+      placeholderImage: file(relativePath: { eq: "img2.jpg" }) {
         childImageSharp {
-          fluid(maxWidth: 1000) {
+          fluid(maxWidth: 2500) {
             ...GatsbyImageSharpFluid
           }
         }
@@ -38,8 +39,11 @@ const Hero = () => {
 
   return (
     <HeroContainer>
-      <HeroText>{data.site.siteMetadata.title}</HeroText>
       <HeroImg fluid={data.placeholderImage.childImageSharp.fluid} />
+      <HeroContent>
+        <HeroMainText>{data.site.siteMetadata.title}</HeroMainText>
+        <HeroSubText to="/about">Find Out More</HeroSubText>
+      </HeroContent>
     </HeroContainer>
   )
 }
@@ -48,27 +52,53 @@ export default Hero
 
 const HeroContainer = styled.div`
   position: relative;
-  min-height: 100vh;
-  height: 100vh;
+  height: 75vh;
   text-align: center;
-  top: -80px;
+  top: 0px;
   display: flex;
   justify-content: center;
   align-items: center;
 `
 const HeroImg = styled(Img)`
   position: relative;
-  top: 0px;
+  top: 0;
   height: 100%;
   width: 100%;
-  background: cover;
+  z-index: -1;
 `
-const HeroText = styled.div`
+const HeroContent = styled.div`
   position: absolute;
-  margin: auto;
+  height: 100%;
   width: 100%;
-  top: 50%;
-  z-index: 2;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  top: 5%;
+  @media screen and (max-width: 768px) {
+    right: 0px;
+    text-align: center;
+  }
+`
+const HeroMainText = styled.div`
+  /* margin: auto; */
   color: #ffffff;
-  font-size: 2rem;
+  font-size: clamp(3rem, 6vw, 6rem);
+  font-weight: bold;
+  padding: 0 0px;
+  margin: 0 1000px;
+`
+
+const HeroSubText = styled(Link)`
+  /* margin: auto; */
+  color: green;
+  font-size: clamp(1.5rem, 3vw, 3rem);
+  padding: 0 50px;
+  background: white;
+  margin: 10px;
+  border-style: solid;
+  border-color: green;
+  border-width: 3px;
+  border-radius: 15px;
+  padding: 10px 50px;
 `
