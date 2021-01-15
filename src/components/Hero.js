@@ -3,6 +3,8 @@ import { useStaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
 import styled from "styled-components"
 import { Link } from "gatsby"
+import { RiArrowDownCircleFill } from "react-icons/ri"
+import scrollTo from "gatsby-plugin-smoothscroll"
 
 /*
  * This component is built using `gatsby-image` to automatically serve optimized
@@ -20,7 +22,14 @@ const Hero = () => {
     query {
       placeholderImage: file(relativePath: { eq: "img2.jpg" }) {
         childImageSharp {
-          fluid(maxWidth: 2500) {
+          fluid(maxWidth: 2500, quality: 100) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+      placeholderImage2: file(relativePath: { eq: "logo.png" }) {
+        childImageSharp {
+          fluid(maxWidth: 2000) {
             ...GatsbyImageSharpFluid
           }
         }
@@ -39,10 +48,16 @@ const Hero = () => {
 
   return (
     <HeroContainer>
-      <HeroImg fluid={data.placeholderImage.childImageSharp.fluid} />
+      <HeroImgContainer>
+        <HeroImg fluid={data.placeholderImage.childImageSharp.fluid} />
+      </HeroImgContainer>
       <HeroContent>
         <HeroMainText>{data.site.siteMetadata.title}</HeroMainText>
-        <HeroSubText to="/about">Find Out More</HeroSubText>
+        <Link to="/">
+          <IconButton onClick={() => scrollTo("#cardContainer")}>
+            <ArrowDown />
+          </IconButton>
+        </Link>
       </HeroContent>
     </HeroContainer>
   )
@@ -52,13 +67,22 @@ export default Hero
 
 const HeroContainer = styled.div`
   position: relative;
-  height: 75vh;
+  height: 100vh;
   text-align: center;
   top: 0px;
   display: flex;
   justify-content: center;
   align-items: center;
 `
+
+const HeroImgContainer = styled.div`
+  background: linear-gradient(to left, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6));
+  position: relative;
+  top: 0;
+  height: 100%;
+  width: 100%;
+`
+
 const HeroImg = styled(Img)`
   position: relative;
   top: 0;
@@ -66,39 +90,48 @@ const HeroImg = styled(Img)`
   width: 100%;
   z-index: -1;
 `
+
 const HeroContent = styled.div`
   position: absolute;
-  height: 100%;
+  height: 50%;
+  top: 25%;
   width: 100%;
   display: flex;
-  justify-content: space-evenly;
-  align-items: center;
   flex-direction: column;
-  top: 5%;
-  @media screen and (max-width: 768px) {
-    right: 0px;
-    text-align: center;
-  }
+  justify-content: space-around;
+  align-items: center;
+  padding: 0px 0;
 `
 const HeroMainText = styled.div`
   /* margin: auto; */
   color: #ffffff;
-  font-size: clamp(3rem, 6vw, 6rem);
+  font-size: clamp(3rem, 6vw, 10rem);
   font-weight: bold;
-  padding: 0 0px;
-  margin: 0 1000px;
+  padding: 10px 20px;
+  /* margin-top: 50%; */
+  border-color: #ffffff;
+  border-style: solid;
+  border-width: 0 5px 0px 0;
+  max-width: 40vw;
+  text-align: left;
+  @media only screen and (max-width: 600px) {
+    max-width: 60vw;
+  }
 `
 
-const HeroSubText = styled(Link)`
-  /* margin: auto; */
-  color: green;
-  font-size: clamp(1.5rem, 3vw, 3rem);
-  padding: 0 50px;
-  background: white;
-  margin: 10px;
-  border-style: solid;
-  border-color: green;
-  border-width: 3px;
-  border-radius: 15px;
-  padding: 10px 50px;
+const ArrowDown = styled(RiArrowDownCircleFill)`
+  font-size: clamp(5rem, 5vw, 7rem);
+  color: white;
+  margin-top: 20px;
+  cursor: pointer;
+`
+const IconButton = styled.button`
+  margin: 0px;
+  padding: 0px;
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
 `
