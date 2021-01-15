@@ -16,7 +16,7 @@ module.exports = {
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
-    `gatsby-plugin-smoothscroll`,
+    // `gatsby-plugin-smoothscroll`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
