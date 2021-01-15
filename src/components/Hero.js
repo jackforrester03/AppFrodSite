@@ -4,7 +4,6 @@ import Img from "gatsby-image"
 import styled from "styled-components"
 import { Link } from "gatsby"
 import { RiArrowDownCircleFill } from "react-icons/ri"
-import scrollTo from "gatsby-plugin-smoothscroll"
 
 /*
  * This component is built using `gatsby-image` to automatically serve optimized

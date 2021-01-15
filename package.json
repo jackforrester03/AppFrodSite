@@ -1,9 +1,9 @@
 {
-  "name": "App Frod Site",
+  "name": "gatsby-starter-default",
   "private": true,
-  "description": "Appleby Frodingham Cricket Club",
+  "description": "A simple starter to get up and developing quickly with Gatsby",
   "version": "0.1.0",
-  "author": "jackforrester03@gmail.com",
+  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
     "antd": "^4.10.2",
     "babel-plugin-styled-components": "^1.12.0",
