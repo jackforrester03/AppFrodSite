@@ -54,7 +54,8 @@ const Hero = () => {
       <HeroContent>
         <HeroMainText>{data.site.siteMetadata.title}</HeroMainText>
         <Link to="/">
-          <IconButton onClick={() => scrollTo("#cardContainer")}>
+          <IconButton onClick={() => console.log("hi")}>
+            {/* scrollTo("#cardContainer") */}
             <ArrowDown />
           </IconButton>
         </Link>

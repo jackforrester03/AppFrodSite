@@ -13,7 +13,6 @@ function renderImage(file) {
 }
 
 const MyImg = props => {
-  console.log(props.img)
   return (
     <StaticQuery
       query={graphql`
@@ -45,7 +44,6 @@ const MyImg = props => {
 }
 
 const Sponsors = props => {
-  console.log(props)
   return (
     <SponCardMain>
       <SponImg>
@@ -64,10 +62,11 @@ export const SponCardContainer = styled.div`
   justify-content: space-evenly;
   align-items: center;
   width: 100vw;
-  padding: 50px 0;
+  padding: 100px 0;
   border-style: solid;
-  border-width: 5px 0;
+  border-width: 3px 0;
   border-color: green;
+  padding-top: 80px;
 `
 
 const SponCardMain = styled.div`

@@ -60,7 +60,9 @@ const NavBrand = styled.img`
 const Bars = styled(FaBars)`
   font-size: 2rem;
   color: white;
-  padding: 0 20px;
+  padding: 2px;
+  background-color: green;
+  margin: 20px;
 `
 
 const NavLinks = styled.div``
